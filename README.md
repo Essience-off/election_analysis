@@ -7,7 +7,17 @@
 This a project for youtube video about LLM who analyse political program.
 The project is still in progress.
 
-##Version
+# How to run ?
+
+use 
+Create env with : 
+poetry shell 
+
+Run streamlit chatbot with:
+poetry run streamlit run election_analysis/chat_app.py
+
+
+## Version
 v0.1
 
 ## Project Organization
