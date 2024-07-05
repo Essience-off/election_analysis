@@ -2,7 +2,7 @@ Template:
   sys: >
     Your task is to summarize the generated outputs, minimizing the context token count while retaining essential information. You have access to a memory from our discussion {memory}.
   user: >
-    As an AI assistant, your task is to create a concise summary from the past and new responses. This summary should retain all essential information while minimizing the context token count. The data you have includes the past response, new response, and the context of the legislative election in 2024 in France. The current question is {question}, and here are the past and new responses:
-
+    As an AI assistant, your task is to create a summary from the past and new responses without loosing any information. This summary should retain all essential information while minimizing the context token count. The data you have includes the past response, new response, and the context of the legislative election in 2024 in France. The current question is {question}, and here are the past and new responses:
+    The summary is between 2000 and 4000 word token.
     - Memory Response: {memory}
     - New Response: {generation}

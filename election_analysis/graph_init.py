@@ -49,7 +49,7 @@ def build_graph():
     workflow.add_node("grade_rag", grade_rag)# grade_rag
     workflow.add_node("rewrite_rag_q", rewrite_rag_q)# rewrite_rag_q
     workflow.add_node("web_search", web_search)# web_search
-    #workflow.add_node("resume_websearch", resume_websearch)# resume_websearch
+    workflow.add_node("resume_websearch", resume_websearch)# resume_websearch
     workflow.add_node("generate", generate)# generate
     workflow.add_node("grade_generation", grade_generation)# grade_generation
     workflow.add_node("rewrite_query_web", rewrite_query_web)# rewrite_query_web
@@ -66,8 +66,8 @@ def build_graph():
         },
     )
     workflow.add_edge("rewrite_rag_q", "retrieve")
-    workflow.add_edge("web_search", "generate")
-    #workflow.add_edge("resume_websearch", "generate")
+    workflow.add_edge("web_search", "resume_websearch")
+    workflow.add_edge("resume_websearch", "generate")
     workflow.add_edge("generate", "grade_generation")
     workflow.add_conditional_edges(
         "grade_generation",

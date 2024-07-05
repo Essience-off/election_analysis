@@ -23,6 +23,8 @@ from typing import Literal, Optional
 
 dotenv.load_dotenv()
 
+os.environ["TOKENIZERS_PARALLELISM"]='false'
+
 base_root = os.getcwd() + "/"
 
 MODEL_GRADER = os.getenv('MODEL_GRADER')
@@ -47,7 +49,7 @@ MODEL_RESUME_WEBSEARCH = os.getenv('MODEL_RESUME_WEBSEARCH')
 YAML_RESUME_WEB_PATH = f"{base_root}{os.getenv('YAML_RESUME_WEB_PATH')}"
 
 class EvaluationResult(BaseModel):
-    Result: Literal['Yes', 'No']= Field(description="Respond should be Yes or No")
+    Result: Literal['Yes', 'No']= Field(description="Yes or No is response expected")
     #Explanation: Optional[str] = Field(None, description="Explanation")
 
 
@@ -99,7 +101,7 @@ def grade_rag(state):
 
     critics_grader_chain = create_chain(model=MODEL_GRADER, 
                                         model_output_format='json',
-                                        model_temp=0.2,
+                                        model_temp=0,
                                         yaml_file=YAML_GRADER_PATH, 
                                         yaml_var_name="Template",
                                         format_dict=grader_dict, 
@@ -159,15 +161,12 @@ def web_search(state):
 
     wrapper = DuckDuckGoSearchAPIWrapper(region="fr-fr", time="w", max_results=4)
 
-    ddg = DuckDuckGoSearchRun(api_wrapper=wrapper)
-    web_results = wrapper.results(question, max_results=2)
+    #ddg = DuckDuckGoSearchRun(api_wrapper=wrapper)
+    web_results = wrapper.results(question, max_results=3)
     
     #retriever = TavilySearchAPIRetriever(k=1)
     #web_results = retriever.invoke(question)
     
-    pprint.pp([web_results])
-
-    pprint.pp([item['link'] for item in web_results])
     url_list = [item['link'] for item in web_results]
     # Load HTML
     loader = AsyncChromiumLoader(url_list)
@@ -177,15 +176,12 @@ def web_search(state):
     docs_transformed = bs_transformer.transform_documents(
         html, tags_to_extract=["p"], remove_lines=True, remove_comments=True
     )
-    print(docs_transformed)
-
 
     if web_docs is not None:
-        web_docs.append(web_results)
+        web_docs.append(docs_transformed)
     else:
-        web_docs = [web_results]
+        web_docs = [docs_transformed]
 
-    pprint.pp(web_docs)
 
     return {"documents": documents, "question": question, "web_docs": web_docs, "memory":memory} 
 
