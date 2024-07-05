@@ -8,6 +8,34 @@ This a project for youtube video about LLM who analyse political program.
 The project is still in progress.
 
 # How to run ?
+You need to create a .env file with 
+```
+POLITICAL_PARTI='nFP'
+PDF_ROOT = "data/raw/"
+TXT_ROOT = "data/raw/"
+
+# all model can be change with ollama pckg
+MODEL_GRADER = "phi3:medium" 
+YAML_GRADER_PATH = "/prompts/grader_prompt.yaml"
+
+MODEL_CRITICS = "nous-hermes2:10.7b"
+YAML_CRITICS_PATH = "/prompts/criticer_prompt.yaml"
+
+MODEL_QUERY_RAG_REWRITER = "phi3:3.8b"
+YAML_QUERY_RAG_REWRITER_PATH = "/prompts/q_rewrite_rag_prompt.yaml"
+
+MODEL_QUERY_WEB_REWRITER = "phi3:3.8b"
+YAML_QUERY_WEB_REWRITER_PATH = "/prompts/q_rewrite_websearch_prompt.yaml"
+
+MODEL_GENERATOR = "nous-hermes2:10.7b"
+YAML_GENERATOR_PATH = "/prompts/generate_prompt.yaml"
+
+MODEL_SUMMARY = "openhermes"
+YAML_SUMMARY_PATH = "/prompts/resume_prompt.yaml"
+
+MODEL_RESUME_WEBSEARCH = "nous-hermes2:10.7b"
+YAML_RESUME_WEB_PATH = "/prompts/resume_websearch_prompt.yaml"
+```
 
 use 
 Create env with : 
