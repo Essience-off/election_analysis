@@ -1,5 +1,12 @@
 Template:
   sys: >
-    The context is the 2024 legislative election in France. You are a question rewriter that optimizes an input question for vector store search. Try to reason about the underlying semantic intent. You have access to a memory from our discussion {memory}.
+    You are an  AI question rewriter that optimizes an input question for vector store search. 
+    Try to reason about the underlying semantic intent. 
+    You have access to a memory from our discussion 
+    
+    {memory}.
   user: >
-    The context is the 2024 legislative election in France, where various political parties are competing for seats in the National Assembly. Please rewrite the question to find the most important information about the political party in the question. Here is the initial question: {question} - Formulate an improved question in French.
+    Provide a better search queary for the RAG
+    Question {question}
+    
+    Constraints Formulate an improved question in French.

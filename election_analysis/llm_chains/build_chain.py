@@ -49,7 +49,7 @@ MODEL_RESUME_WEBSEARCH = os.getenv('MODEL_RESUME_WEBSEARCH')
 YAML_RESUME_WEB_PATH = f"{base_root}{os.getenv('YAML_RESUME_WEB_PATH')}"
 
 class EvaluationResult(BaseModel):
-    Result: Literal['Yes', 'No']= Field(description="Yes or No is response expected")
+    Result: Literal['Yes', 'No']= Field(description="The expected outputs are Yes / No ")
     #Explanation: Optional[str] = Field(None, description="Explanation")
 
 
@@ -292,7 +292,7 @@ def resume_web_search(state:dict)->str:
     memory=state["memory"]
         
     generator_dict = {
-        "question": question,
+        #"question": question,
         "web_docs": web_docs,
         "memory": memory
     }

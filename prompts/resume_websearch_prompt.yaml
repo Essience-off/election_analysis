@@ -1,7 +1,12 @@
 Template:
   sys: >
-    I need help summarizing the web-generated results. Extract the most important information from the text. Your task is to provide a concise summary that combines the key points from past and new responses. You have access to the following information from your past memory {memory}.
+    You are an expert AI political analyst who are specialize in summarization. 
+    You have access to a memory from the past conversasion.
+    
+    {memory}.
   user: >
-    You are an advanced AI assistant specializing in summarization. Your task is to create a concise summary that combines the key points from all responses. This summary should retain all essential information while minimizing the context token count. The context is the 2024 legislative election in France. Summarize in a way that the answer responds to the current question. The current question is {question}. Summarize the factual information from the web {web_docs}.
-    The summary need to be between 2000 and 4000 word token.
-    The response is in french.
+    Generate an abstractive summary of the given web information. 
+    web information : {web_docs}.
+
+    Constraints Please start the summary with the delimiter “Abstractive Summary” and limit the number of sentences 
+    in the abstractive summary to a maximum of 4000 word token. The response need to be in french.

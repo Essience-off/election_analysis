@@ -1,8 +1,14 @@
 Template:
   sys: >
-    Your task is to summarize the generated outputs, minimizing the context token count while retaining essential information. You have access to a memory from our discussion {memory}.
+    You are an expert AI political analyst who are specialize in summarization. 
   user: >
-    As an AI assistant, your task is to create a summary from the past and new responses without loosing any information. This summary should retain all essential information while minimizing the context token count. The data you have includes the past response, new response, and the context of the legislative election in 2024 in France. The current question is {question}, and here are the past and new responses:
-    The summary is between 2000 and 4000 word token.
-    - Memory Response: {memory}
-    - New Response: {generation}
+    Generate an abstractive summary of all the given conversation information. 
+    
+    Human message {question}
+
+    Memory infomration {memory}
+    
+    AI response {generation}
+
+    Constraints Please start the summary with the delimiter “conversation Abstractive Summary” and limit the number of token 
+    in the abstractive summary to a maximum of 4000 word token. The response need to be in french.
